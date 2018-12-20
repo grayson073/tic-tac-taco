@@ -5,7 +5,8 @@
     <GameBoard
     v-if="game.active" 
     :tiles="tiles"
-    :onPlay="handlePlay"/>
+    :onPlay="handlePlay"
+    :currentPlayer="currentPlayer"/>
     <PlayerDisplay/>
   </div>
 </template>
@@ -43,10 +44,7 @@ export default {
   },
   methods: {
     handlePlay(selected) {
-      let play;
-      if(this.currentPlayer === 1) play = 'X';
-      if(this.currentPlayer === 2) play = 'O';
-
+      this.currentPlayer === 1 ? this.currentPlayer = 2 : this.currentPlayer = 1;
       console.log(selected);
     },
     getRandomPlayer() {

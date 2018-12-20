@@ -1,6 +1,11 @@
 <template>
-  <div @click="handlePlay" class="play-tile">
-    <h1>{{value}}</h1>
+  <div>
+    <div v-if="!value" @click="handlePlay" class="play-tile game-tile">
+      <h1>{{value}}</h1>
+    </div>
+    <div v-if="value" class="play-tile game-tile">
+      <h1>{{value}}</h1>
+    </div>
   </div>
 </template>
 
@@ -12,13 +17,14 @@ export default {
     };
   },
   props: {
-    game: Object,
-    startGame: Function,
     onPlay: Function,
-    position: String
+    position: String,
+    currentPlayer: Number
   },
   methods: {
     handlePlay() {
+      if(this.currentPlayer === 1) this.value = 'X';
+      if(this.currentPlayer === 2) this.value = 'O';
       this.onPlay(this.position);
     }
   }
@@ -32,6 +38,5 @@ export default {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-
   }
 </style>

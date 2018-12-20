@@ -4,7 +4,8 @@
           <PlayTile class="game-tile" v-for="(tile, index) in tiles"
           :key="index"
           :position="tiles[index]"
-          :onPlay="handlePlay"/>
+          :onPlay="handlePlay"
+          :currentPlayer="currentPlayer"/>
         </div>
 
     </div>
@@ -16,6 +17,7 @@ export default {
   props: {
     tiles: Array,
     onPlay: Function,
+    currentPlayer: Number
   },
   components: {
     PlayTile,
@@ -28,7 +30,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
   .game-board {
     border: 2px solid red;
     display: flex;
