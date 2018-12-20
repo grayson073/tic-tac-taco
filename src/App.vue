@@ -21,4 +21,9 @@ export default {
     flex-flow: column nowrap;
     align-items: center;
   }
+
+  body {
+    padding: 0px;
+    margin: 0px;
+  }
 </style>

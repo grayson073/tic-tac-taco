@@ -1,9 +1,10 @@
 <template>
   <div class="game">
-    Game Component
+    <h1>Tic-Tac-Toe!</h1>
     <GameBoard
     :game="game"
-    :startGame="() => game.active = true"/>
+    :startGame="() => game.active = true"
+    :onSelect="handleSelect"/>
     <PlayerDisplay/>
   </div>
 </template>
@@ -15,17 +16,17 @@ export default {
   data() {
     return {
       game: {
-        play: {
-          topLeft: null,
-          topMid: null,
-          topRight: null,
-          middleLeft: null,
-          middleMid: null,
-          middleRight: null,
-          bottomLeft: null,
-          bottomMid: null,
-          bottomRight: null,
-        },
+        plays: [
+          'topLeft',
+          'topMid',
+          'topRight',
+          'middleLeft',
+          'middleMid',
+          'middleRight',
+          'bottomLeft',
+          'bottomMid',
+          'bottomRight'
+        ],
         active: false
       }
     };
@@ -33,6 +34,11 @@ export default {
   components: {
     GameBoard,
     PlayerDisplay
+  },
+  methods: {
+    handleSelect(selected) {
+      console.log('SELECTED', selected);
+    }
   }
 };
 </script>
@@ -46,6 +52,6 @@ export default {
     flex-flow: column nowrap;
     align-items: center;
     max-width: 100%;
-    width: 95vw;
+    width: 100vw;
   }
 </style>
