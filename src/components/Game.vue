@@ -44,8 +44,10 @@ export default {
   },
   methods: {
     handlePlay(selected) {
+      let p = this.game.plays;
+      this.currentPlayer === 1 ? p[selected] = 1 : p[selected] = -1;
       this.currentPlayer === 1 ? this.currentPlayer = 2 : this.currentPlayer = 1;
-      console.log(selected);
+      this.checkGameStatus();
     },
     getRandomPlayer() {
       return Math.floor(Math.random() * Math.floor(2) + 1);
@@ -53,6 +55,26 @@ export default {
     startGame() {
       this.game.active = true;
       this.currentPlayer = this.getRandomPlayer();
+    },
+    checkGameStatus() {
+      let p = this.game.plays;
+      if(p.topLeft + p.topMid + p.topRight === 3) console.log('P1 WINS!');      
+      if(p.middleLeft + p.middleMid + p.middleRight === 3) console.log('P1 WINS!');      
+      if(p.bottomLeft + p.bottomMid + p.bottomRight === 3) console.log('P1 WINS!');      
+      if(p.topLeft + p.middleMid + p.bottomRight === 3) console.log('P1 WINS!');      
+      if(p.bottomLeft + p.middleMid + p.topRight === 3) console.log('P1 WINS!');
+      if(p.topLeft + p.middleLeft + p.bottomLeft === 3) console.log('P1 WINS!');
+      if(p.topMid + p.middleMid + p.bottomMid === 3) console.log('P1 WINS!');
+      if(p.topRight + p.middleRight + p.bottomRight === 3) console.log('P1 WINS!');
+      
+      if(p.topLeft + p.topMid + p.topRight === -3) console.log('P2 WINS!');      
+      if(p.middleLeft + p.middleMid + p.middleRight === -3) console.log('P2 WINS!');      
+      if(p.bottomLeft + p.bottomMid + p.bottomRight === -3) console.log('P2 WINS!');      
+      if(p.topLeft + p.middleMid + p.bottomRight === -3) console.log('P2 WINS!');      
+      if(p.bottomLeft + p.middleMid + p.topRight === -3) console.log('P2 WINS!');
+      if(p.topLeft + p.middleLeft + p.bottomLeft === -3) console.log('P2 WINS!');
+      if(p.topMid + p.middleMid + p.bottomMid === -3) console.log('P2 WINS!');
+      if(p.topRight + p.middleRight + p.bottomRight === -3) console.log('P2 WINS!');
     }
   }
 };

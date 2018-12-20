@@ -19,12 +19,12 @@ export default {
   props: {
     onPlay: Function,
     position: String,
-    currentPlayer: Number
+    currentPlayer: Number,
   },
   methods: {
     handlePlay() {
-      if(this.currentPlayer === 1) this.value = 'X';
-      if(this.currentPlayer === 2) this.value = 'O';
+      if(this.currentPlayer === 1) this.value = 1;
+      if(this.currentPlayer === 2) this.value = -1;
       this.onPlay(this.position);
     }
   }
