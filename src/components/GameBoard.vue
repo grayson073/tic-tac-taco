@@ -1,12 +1,12 @@
 <template>
     <div class="game-board">
-        <div v-if="game.active" class="game-grid">
-          <PlayTile class="game-tile" v-for="(play, index) in game.plays"
+        <div class="game-grid">
+          <PlayTile class="game-tile" v-for="(tile, index) in tiles"
           :key="index"
-          :name="game.plays[index]"
-          :onSelect="handleSelect"/>
+          :position="tiles[index]"
+          :onPlay="handlePlay"/>
         </div>
-      <button v-if="!game.active" @click="startGame">Start Game!</button> 
+
     </div>
 </template>
 
@@ -14,16 +14,15 @@
 import PlayTile from './PlayTile';
 export default {
   props: {
-    game: Object,
-    startGame: Function,
-    onSelect: Function,
+    tiles: Array,
+    onPlay: Function,
   },
   components: {
     PlayTile,
   },
   methods: {
-    handleSelect(selected) {
-      this.onSelect(selected);
+    handlePlay(selected) {
+      this.onPlay(selected);
     }
   }
 };

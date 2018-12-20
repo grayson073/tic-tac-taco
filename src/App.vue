@@ -14,6 +14,10 @@ export default {
 </script>
 
 <style>
+  html { 
+    margin-left: calc(100vw - 100%);
+  }
+
   #app {
     border: 2px solid black;
     padding: 10px;

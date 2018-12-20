@@ -1,20 +1,25 @@
 <template>
-  <div class="play-tile">
-    <button @click="handleSelect">Tile!</button>
+  <div @click="handlePlay" class="play-tile">
+    <h1>{{value}}</h1>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      value: null,
+    };
+  },
   props: {
     game: Object,
     startGame: Function,
-    onSelect: Function,
-    name: String
+    onPlay: Function,
+    position: String
   },
   methods: {
-    handleSelect() {
-      this.onSelect(this.name);
+    handlePlay() {
+      this.onPlay(this.position);
     }
   }
 };
@@ -23,5 +28,10 @@ export default {
 <style scoped>
   .play-tile {
     border: 2px solid green;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
   }
 </style>
