@@ -22,7 +22,8 @@ function initGame() {
       topLeft: null, topMid: null, topRight: null,
       middleLeft: null, middleMid: null, middleRight: null,
       bottomLeft: null, bottomMid: null, bottomRight: null,
-    }
+    },
+    winner: null,
   };
 }
 
@@ -58,23 +59,25 @@ export default {
     },
     checkGameStatus() {
       let p = this.game.plays;
-      if(p.topLeft + p.topMid + p.topRight === 3) console.log('P1 WINS!');      
-      if(p.middleLeft + p.middleMid + p.middleRight === 3) console.log('P1 WINS!');      
-      if(p.bottomLeft + p.bottomMid + p.bottomRight === 3) console.log('P1 WINS!');      
-      if(p.topLeft + p.middleMid + p.bottomRight === 3) console.log('P1 WINS!');      
-      if(p.bottomLeft + p.middleMid + p.topRight === 3) console.log('P1 WINS!');
-      if(p.topLeft + p.middleLeft + p.bottomLeft === 3) console.log('P1 WINS!');
-      if(p.topMid + p.middleMid + p.bottomMid === 3) console.log('P1 WINS!');
-      if(p.topRight + p.middleRight + p.bottomRight === 3) console.log('P1 WINS!');
+      let p1 = this.player1;
+      let p2 = this.player2;
+      if(p.topLeft + p.topMid + p.topRight === 3) this.winner = p1;      
+      if(p.middleLeft + p.middleMid + p.middleRight === 3) this.winner = p1;      
+      if(p.bottomLeft + p.bottomMid + p.bottomRight === 3) this.winner = p1;      
+      if(p.topLeft + p.middleMid + p.bottomRight === 3) this.winner = p1;      
+      if(p.bottomLeft + p.middleMid + p.topRight === 3) this.winner = p1;
+      if(p.topLeft + p.middleLeft + p.bottomLeft === 3) this.winner = p1;
+      if(p.topMid + p.middleMid + p.bottomMid === 3) this.winner = p1;
+      if(p.topRight + p.middleRight + p.bottomRight === 3) this.winner = p1;
       
-      if(p.topLeft + p.topMid + p.topRight === -3) console.log('P2 WINS!');      
-      if(p.middleLeft + p.middleMid + p.middleRight === -3) console.log('P2 WINS!');      
-      if(p.bottomLeft + p.bottomMid + p.bottomRight === -3) console.log('P2 WINS!');      
-      if(p.topLeft + p.middleMid + p.bottomRight === -3) console.log('P2 WINS!');      
-      if(p.bottomLeft + p.middleMid + p.topRight === -3) console.log('P2 WINS!');
-      if(p.topLeft + p.middleLeft + p.bottomLeft === -3) console.log('P2 WINS!');
-      if(p.topMid + p.middleMid + p.bottomMid === -3) console.log('P2 WINS!');
-      if(p.topRight + p.middleRight + p.bottomRight === -3) console.log('P2 WINS!');
+      if(p.topLeft + p.topMid + p.topRight === -3) this.winner = p2;      
+      if(p.middleLeft + p.middleMid + p.middleRight === -3) this.winner = p2;      
+      if(p.bottomLeft + p.bottomMid + p.bottomRight === -3) this.winner = p2;      
+      if(p.topLeft + p.middleMid + p.bottomRight === -3) this.winner = p2;      
+      if(p.bottomLeft + p.middleMid + p.topRight === -3) this.winner = p2;
+      if(p.topLeft + p.middleLeft + p.bottomLeft === -3) this.winner = p2;
+      if(p.topMid + p.middleMid + p.bottomMid === -3) this.winner = p2;
+      if(p.topRight + p.middleRight + p.bottomRight === -3) this.winner = p2;
     }
   }
 };
@@ -83,8 +86,6 @@ export default {
 
 <style scoped>
   .game {
-    border: 2px solid blue;
-    padding: 10px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;

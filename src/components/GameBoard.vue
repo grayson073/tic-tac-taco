@@ -7,7 +7,6 @@
           :onPlay="handlePlay"
           :currentPlayer="currentPlayer"/>
         </div>
-
     </div>
 </template>
 
@@ -32,7 +31,9 @@ export default {
 
 <style>
   .game-board {
-    border: 2px solid red;
+    padding: 4px;
+    border-radius: 12px;
+    background-color: rgb(65, 91, 123);
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -40,16 +41,14 @@ export default {
 
   .game-grid {
     display: grid;
-    grid-template-columns: repeat(3, 200px [col-start]);
-    grid-template-rows: repeat(3, 200px [row-start]);
-    margin: 10px;
+    grid-template-columns: repeat(3, 77px [col-start]);
+    grid-template-rows: repeat(3, 77px [row-start]);
     align-items: center;
   }
 
   .game-tile {
     list-style: none;
-    height: 150px;
-    width: 150px;
     justify-self: center;
   }
+
 </style>
