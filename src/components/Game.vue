@@ -22,7 +22,8 @@ function initGame() {
       topLeft: null, topMid: null, topRight: null,
       middleLeft: null, middleMid: null, middleRight: null,
       bottomLeft: null, bottomMid: null, bottomRight: null,
-    }
+    },
+    winner: null,
   };
 }
 
@@ -44,8 +45,10 @@ export default {
   },
   methods: {
     handlePlay(selected) {
+      let p = this.game.plays;
+      this.currentPlayer === 1 ? p[selected] = 1 : p[selected] = -1;
       this.currentPlayer === 1 ? this.currentPlayer = 2 : this.currentPlayer = 1;
-      console.log(selected);
+      this.checkGameStatus();
     },
     getRandomPlayer() {
       return Math.floor(Math.random() * Math.floor(2) + 1);
@@ -53,6 +56,28 @@ export default {
     startGame() {
       this.game.active = true;
       this.currentPlayer = this.getRandomPlayer();
+    },
+    checkGameStatus() {
+      let p = this.game.plays;
+      let p1 = this.player1;
+      let p2 = this.player2;
+      if(p.topLeft + p.topMid + p.topRight === 3) this.winner = p1;      
+      if(p.middleLeft + p.middleMid + p.middleRight === 3) this.winner = p1;      
+      if(p.bottomLeft + p.bottomMid + p.bottomRight === 3) this.winner = p1;      
+      if(p.topLeft + p.middleMid + p.bottomRight === 3) this.winner = p1;      
+      if(p.bottomLeft + p.middleMid + p.topRight === 3) this.winner = p1;
+      if(p.topLeft + p.middleLeft + p.bottomLeft === 3) this.winner = p1;
+      if(p.topMid + p.middleMid + p.bottomMid === 3) this.winner = p1;
+      if(p.topRight + p.middleRight + p.bottomRight === 3) this.winner = p1;
+      
+      if(p.topLeft + p.topMid + p.topRight === -3) this.winner = p2;      
+      if(p.middleLeft + p.middleMid + p.middleRight === -3) this.winner = p2;      
+      if(p.bottomLeft + p.bottomMid + p.bottomRight === -3) this.winner = p2;      
+      if(p.topLeft + p.middleMid + p.bottomRight === -3) this.winner = p2;      
+      if(p.bottomLeft + p.middleMid + p.topRight === -3) this.winner = p2;
+      if(p.topLeft + p.middleLeft + p.bottomLeft === -3) this.winner = p2;
+      if(p.topMid + p.middleMid + p.bottomMid === -3) this.winner = p2;
+      if(p.topRight + p.middleRight + p.bottomRight === -3) this.winner = p2;
     }
   }
 };
@@ -61,8 +86,6 @@ export default {
 
 <style scoped>
   .game {
-    border: 2px solid blue;
-    padding: 10px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;

@@ -19,7 +19,6 @@ export default {
   }
 
   #app {
-    border: 2px solid black;
     padding: 10px;
     display: flex;
     flex-flow: column nowrap;
