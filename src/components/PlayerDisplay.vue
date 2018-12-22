@@ -1,7 +1,6 @@
 <template>
   <div class="player-display">
     Player Component
-    
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="game">
-    <h1>Tic-Tac-Toe!</h1>
+    <h1>Tic-Tac-Taco</h1>
     <button v-if="!game.active" @click="startGame">Start Game!</button>
     <GameBoard
     v-if="game.active" 
@@ -85,11 +85,61 @@ export default {
 
 
 <style scoped>
+  @import url('https://fonts.googleapis.com/css?family=Lily+Script+One');
+
   .game {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    max-width: 100%;
-    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  h1 {
+    font-family: 'Lily Script One', cursive;
+  }
+
+  @media only screen and (min-width: 650px) {
+    h1 {
+      font-size: 75px;
+      margin: 30px;
+    }
+  }
+
+  @media only screen and (min-width: 415px) and (max-width: 649px) {
+    .game {
+      margin-left: -10px;
+    }
+    h1 {
+      font-size: 55px;
+      margin: 20px;
+    }
+  }
+
+    /* iPhone 6/7/8 & Plus */
+  @media only screen and (min-width: 375px) and (max-width: 414px) {
+    h1 {
+      font-size: 40px;
+      margin: 20px;
+    }
+  }
+
+  @media only screen and (min-width: 301px) and (max-width: 374px) {
+    h1 {
+      font-size: 35px;
+      margin: 15px;
+    }
+  }
+
+  /* Micro! */
+  @media only screen and (max-width: 300px) {
+    .game {
+      margin-left: 10px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin: 10px;
+    }
   }
 </style>

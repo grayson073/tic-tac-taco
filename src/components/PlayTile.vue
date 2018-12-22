@@ -1,13 +1,11 @@
 <template>
   <div>
-    <div v-if="!value" @click="handlePlay" class="play-tile game-tile">
-    </div>
-
+    <div v-if="!value" @click="handlePlay" class="play-tile game-tile"></div>
     <div v-if="value" class="play-tile game-tile">
       <div class="fadeIn">
         <div class="icon">
-          <span v-if="value === 1">X</span>
-          <span v-if="value === -1">O</span>
+          <img v-if="value === 1" src="@/assets/x.png">
+          <img v-if="value === -1" src="@/assets/o.png">
         </div>
       </div>
     </div>
@@ -37,6 +35,7 @@ export default {
 </script>
 
 <style scoped>
+
   .play-tile {
     display: flex;
     flex-flow: row nowrap;
@@ -44,20 +43,20 @@ export default {
     align-items: center;
     width: 100px;
     height: 100px;
-    font-family: 'Baloo', cursive;
     font-size: 40px;
   }
 
   .fade-in {
     opacity: 0;
   }
+
   .icon {
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
-    height: 70px;
+    width: 85px;
+    height: 85px;
     -webkit-animation-name: icon; /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
     -webkit-animation-fill-mode: forwards;
@@ -78,10 +77,9 @@ export default {
   }
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
   }
-
 
   @-webkit-keyframes icon {
     0%   {background-color: #FFF7B2;}
@@ -100,6 +98,43 @@ export default {
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+  }
+
+  @media only screen and (min-width: 650px) {
+    .icon {
+      width: 135px;
+      height: 135px;
+    }
+  }
+
+  @media only screen and (min-width: 415px) and (max-width: 649px) {
+    .icon {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @media only screen and (min-width: 375px) and (max-width: 414px) {
+    .icon {
+      width: 85px;
+      height: 85px;
+    }
+  }
+
+    /* iPhone 6/7/8 & Plus */
+  @media only screen and (max-width: 374px) {
+    .icon {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+    /* Micro! */
+  @media only screen and (max-width: 300px) {
+    .icon {
+      width: 40px;
+      height: 40px;
+    }
   }
 
 </style>
