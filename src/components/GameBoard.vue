@@ -83,7 +83,7 @@ export default {
       grid-template-columns: repeat(3, 85px [col-start]);
       grid-template-rows: repeat(3, 85px [row-start]);
       padding: 10px;
-      margin: -10px -3px 5px -1px;
+      margin: 20px -25px -25px 20px;
     }
   }
 
@@ -97,7 +97,7 @@ export default {
       grid-template-columns: repeat(3, 50px [col-start]);
       grid-template-rows: repeat(3, 50px [row-start]);
       padding: 10px;
-      margin: -30px 0px 0px 0px;
+      margin: 10px 0px 0px 30px;
     }
   }
 

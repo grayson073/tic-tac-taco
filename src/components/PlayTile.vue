@@ -48,7 +48,6 @@ export default {
 
   .pre-click {
     border-radius: 50px;
-    transform: scale(0.5);
     background-color: #FFA9C9;
   }
 
@@ -128,10 +127,15 @@ export default {
   }
 
     /* iPhone 6/7/8 & Plus */
-  @media only screen and (max-width: 374px) {
+  @media only screen and (min-width: 301px) and (max-width: 374px) {
     .icon {
       width: 70px;
       height: 70px;
+    }
+
+    .play-tile {
+      width: 40px;
+      height: 40px;
     }
   }
 
@@ -140,6 +144,11 @@ export default {
     .icon {
       width: 40px;
       height: 40px;
+    }
+
+    .play-tile {
+      width: 20px;
+      height: 20px;
     }
   }
 
