@@ -12,7 +12,7 @@
     </section>
     <section class="message">
       <p v-if="game.active">{{!game.winner && game.active ? currentTurnMessage : gameOverMessage }}</p>
-      <p v-if="game.winner" @click="startGame" class="game-mode">NEW GAME</p>
+      <p v-if="game.winner && game.active" @click="startGame" class="game-mode">NEW GAME</p>
       <img v-if="!game.active" src="@/assets/taco.png">
     </section>
   </div>
@@ -159,7 +159,7 @@ export default {
 
   h1 {
     font-family: 'Lily Script One', cursive;
-    font-size: 15vw;
+    font-size: 13vw;
     text-shadow: 3px 2px rgb(255, 136, 180);
     width: 80vw;
     text-align: center;
