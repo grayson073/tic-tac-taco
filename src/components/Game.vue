@@ -132,7 +132,7 @@ export default {
   h1 {
     font-family: 'Lily Script One', cursive;
     text-shadow: 3px 2px rgb(255, 136, 180);
-    padding: 30px 0px 0px 0px
+    padding: 50px 0px 0px 0px
   }
 
   .message {
@@ -151,6 +151,10 @@ export default {
   }
 
   @media only screen and (min-width: 650px) {
+    .game-mode {
+      margin: 75px 0px 75px 0px;
+    }
+
     h1 {
       font-size: 75px;
       margin: 30px;
@@ -161,6 +165,7 @@ export default {
     .game {
       margin-left: -10px;
     }
+
     h1 {
       font-size: 55px;
       margin: 20px;
@@ -176,6 +181,10 @@ export default {
   }
 
   @media only screen and (min-width: 301px) and (max-width: 374px) {
+    .game-mode {
+      margin: 45px 0px 45px 0px;
+    }
+
     h1 {
       font-size: 45px;
       margin: 15px;
@@ -186,14 +195,13 @@ export default {
   @media only screen and (max-width: 300px) {
 
     .game-mode {
-      margin: 17px 0px 17px 0px;
+      margin: 25px 0px 25px 0px;
       font-size: 12px;
       font-weight: 800;
-      min-width: 195px;
     }
 
     h1 {
-      font-size: 27px;
+      font-size: 35px;
       margin: 10px;
     }
   }
