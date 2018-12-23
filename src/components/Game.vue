@@ -1,16 +1,18 @@
 <template>
   <div class="game">
-    <h1>Tic-Tac-Taco</h1>
+    <h1 @click="game.active = false">Tic-Tac-Taco</h1>
     <p v-if="!game.active" @click="startGame" class="game-mode">PLAYER VS PLAYER</p>
     <section>
       <GameBoard
       v-if="game.active" 
       :tiles="tiles"
       :onPlay="handlePlay"
-      :currentPlayer="currentPlayer"/>
+      :currentPlayer="currentPlayer"
+      :reset="reset"/>
     </section>
     <section class="message">
-      {{message}}
+      <p v-if="game.active">{{!game.winner && game.active ? currentTurnMessage : gameOverMessage }}</p>
+      <p v-if="game.winner" @click="startGame" class="game-mode">NEW GAME</p>
       <img v-if="!game.active" src="@/assets/taco.png">
     </section>
   </div>
@@ -27,7 +29,7 @@ function initGame() {
       middleLeft: null, middleMid: null, middleRight: null,
       bottomLeft: null, bottomMid: null, bottomRight: null,
     },
-    winner: null,
+    winner: null
   };
 }
 
@@ -39,9 +41,12 @@ export default {
   data() {
     return {
       game: initGame(),
-      tiles: initTiles(),
       currentPlayer: null,
-      message: null
+      gameOverMessage: null,
+      player1: 'Carne Asada',
+      player2: 'Chorizo',
+      reset: false,
+      playCount: 0
     };
   },
   components: {
@@ -49,6 +54,8 @@ export default {
   },
   methods: {
     handlePlay(selected) {
+      this.reset = false;
+      this.playCount++;
       let p = this.game.plays;
       this.currentPlayer === 1 ? p[selected] = 1 : p[selected] = -1;
       this.currentPlayer === 1 ? this.currentPlayer = 2 : this.currentPlayer = 1;
@@ -58,6 +65,9 @@ export default {
       return Math.floor(Math.random() * Math.floor(2) + 1);
     },
     startGame() {
+      this.reset = true;
+      this.game = initGame();
+      this.tiles = initTiles();
       this.game.active = true;
       this.currentPlayer = this.getRandomPlayer();
     },
@@ -67,24 +77,40 @@ export default {
       let p2 = this.player2;
 
       // Player 1 winning conditions (8 possibilities)
-      if(p.topLeft + p.topMid + p.topRight === 3) this.winner = p1;      
-      if(p.middleLeft + p.middleMid + p.middleRight === 3) this.winner = p1;      
-      if(p.bottomLeft + p.bottomMid + p.bottomRight === 3) this.winner = p1;      
-      if(p.topLeft + p.middleMid + p.bottomRight === 3) this.winner = p1;      
-      if(p.bottomLeft + p.middleMid + p.topRight === 3) this.winner = p1;
-      if(p.topLeft + p.middleLeft + p.bottomLeft === 3) this.winner = p1;
-      if(p.topMid + p.middleMid + p.bottomMid === 3) this.winner = p1;
-      if(p.topRight + p.middleRight + p.bottomRight === 3) this.winner = p1;
+      if(p.topLeft + p.topMid + p.topRight === 3) this.game.winner = p1;      
+      if(p.middleLeft + p.middleMid + p.middleRight === 3) this.game.winner = p1;      
+      if(p.bottomLeft + p.bottomMid + p.bottomRight === 3) this.game.winner = p1;      
+      if(p.topLeft + p.middleMid + p.bottomRight === 3) this.game.winner = p1;      
+      if(p.bottomLeft + p.middleMid + p.topRight === 3) this.game.winner = p1;
+      if(p.topLeft + p.middleLeft + p.bottomLeft === 3) this.game.winner = p1;
+      if(p.topMid + p.middleMid + p.bottomMid === 3) this.game.winner = p1;
+      if(p.topRight + p.middleRight + p.bottomRight === 3) this.game.winner = p1;
       
       // Player 2 winning conditions (8 possibilities)
-      if(p.topLeft + p.topMid + p.topRight === -3) this.winner = p2;      
-      if(p.middleLeft + p.middleMid + p.middleRight === -3) this.winner = p2;      
-      if(p.bottomLeft + p.bottomMid + p.bottomRight === -3) this.winner = p2;      
-      if(p.topLeft + p.middleMid + p.bottomRight === -3) this.winner = p2;      
-      if(p.bottomLeft + p.middleMid + p.topRight === -3) this.winner = p2;
-      if(p.topLeft + p.middleLeft + p.bottomLeft === -3) this.winner = p2;
-      if(p.topMid + p.middleMid + p.bottomMid === -3) this.winner = p2;
-      if(p.topRight + p.middleRight + p.bottomRight === -3) this.winner = p2;
+      if(p.topLeft + p.topMid + p.topRight === -3) this.game.winner = p2;      
+      if(p.middleLeft + p.middleMid + p.middleRight === -3) this.game.winner = p2;      
+      if(p.bottomLeft + p.bottomMid + p.bottomRight === -3) this.game.winner = p2;      
+      if(p.topLeft + p.middleMid + p.bottomRight === -3) this.game.winner = p2;      
+      if(p.bottomLeft + p.middleMid + p.topRight === -3) this.game.winner = p2;
+      if(p.topLeft + p.middleLeft + p.bottomLeft === -3) this.game.winner = p2;
+      if(p.topMid + p.middleMid + p.bottomMid === -3) this.game.winner = p2;
+      if(p.topRight + p.middleRight + p.bottomRight === -3) this.game.winner = p2;
+    
+      if(this.game.winner !== null) {
+        this.gameOverMessage = this.game.winner + ' wins!';
+      }
+
+      if(this.playCount === 9 && this.game.winner === null) {
+        this.game.winner = 'draw';
+        this.gameOverMessage = 'Stalemate!';
+      }
+    }
+  },
+  computed: {
+    currentTurnMessage: function() {
+      let p = this.currentPlayer;
+      let msg = '\'s turn!';
+      return p === 1 ? this.player1 + msg : this.player2 + msg;
     }
   }
 };
@@ -98,8 +124,6 @@ export default {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    margin: 0px;
-    padding: 0px;
   }
 
   /* Start Button CSS - Button by Federico Dossena https://fdossena.com/?p=html5cool/buttons/i.frag */
@@ -107,102 +131,54 @@ export default {
     cursor: pointer;
     display: inline-block;
     padding: 5px 25px 5px 25px;
-    border: 0.16em solid rgb(0, 0, 0);
-    margin: 30px 0px 30px 0px;
+    margin: 2vh 0px 6vh 0px;
+    border: 3px solid black;
     box-sizing: border-box;
     text-decoration: none;
     text-transform: uppercase;
     font-family: 'Roboto',sans-serif;
+    font-size: 5vw;
     font-weight: 800;
     color: rgb(0, 0, 0);
     text-align: center;
     transition: all 0.15s;
+    background-color: rgba(255, 255, 255, 0.694);
+    max-height: 500px;
+    max-width: 500px;
   }
   .game-mode:hover{
-    color:rgb(170, 170, 170);
-    border-color:rgb(170, 170, 170);
+    color:rgb(145, 145, 145);
+    border-color:rgb(145, 145, 145);
   }
   .game-mode:active{
-    color:rgb(97, 97, 97);
-    border-color:rgb(97, 97, 97);
+    color:rgb(255, 134, 179);
+    border-color:rgb(255, 134, 179);
   }
   /* End Button CSS */
 
 
   h1 {
     font-family: 'Lily Script One', cursive;
+    font-size: 15vw;
     text-shadow: 3px 2px rgb(255, 136, 180);
-    padding: 50px 0px 0px 0px
+    width: 80vw;
+    text-align: center;
+    cursor: pointer;
   }
 
   .message {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    padding: 30px 0px 0px 0px;
     font-family:'Roboto',sans-serif;
     font-weight: 800;
+    font-size: 5vw;
   }
 
-  .message img {
-    max-height: 50%;
-    max-width: 50%;
+  .message, img {
+    max-height: 55vw;
+    max-width: 55vw;
   }
 
-  @media only screen and (min-width: 650px) {
-    .game-mode {
-      margin: 75px 0px 75px 0px;
-    }
-
-    h1 {
-      font-size: 75px;
-      margin: 30px;
-    }
-  }
-
-  @media only screen and (min-width: 415px) and (max-width: 649px) {
-    .game {
-      margin-left: -10px;
-    }
-
-    h1 {
-      font-size: 55px;
-      margin: 20px;
-    }
-  }
-
-  /* iPhone 6/7/8 & Plus */
-  @media only screen and (min-width: 375px) and (max-width: 414px) {
-    h1 {
-      font-size: 55px;
-      margin: 20px;
-    }
-  }
-
-  @media only screen and (min-width: 301px) and (max-width: 374px) {
-    .game-mode {
-      margin: 45px 0px 45px 0px;
-    }
-
-    h1 {
-      font-size: 45px;
-      margin: 15px;
-    }
-  }
-
-  /* Micro! */
-  @media only screen and (max-width: 300px) {
-
-    .game-mode {
-      margin: 25px 0px 25px 0px;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    h1 {
-      font-size: 35px;
-      margin: 10px;
-    }
-  }
 </style>
