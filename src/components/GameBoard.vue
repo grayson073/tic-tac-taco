@@ -32,7 +32,7 @@ export default {
 <style>
   .game-board {
     border-radius: 12px;
-    background-color: rgb(65, 91, 123);
+    background-color: rgb(255, 134, 179);
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;

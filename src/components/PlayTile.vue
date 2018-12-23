@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="!value" @click="handlePlay" class="play-tile game-tile"></div>
-    <div v-if="value" class="play-tile game-tile">
+    <div v-if="!value" @click="handlePlay" class="play-tile pre-click"></div>
+    <div v-if="value" class="play-tile">
       <div class="fadeIn">
         <div class="icon">
           <img v-if="value === 1" src="@/assets/x.png">
@@ -46,6 +46,12 @@ export default {
     font-size: 40px;
   }
 
+  .pre-click {
+    border-radius: 50px;
+    transform: scale(0.5);
+    background-color: #FFA9C9;
+  }
+
   .fade-in {
     opacity: 0;
   }
@@ -85,8 +91,8 @@ export default {
     0%   {background-color: #FFF7B2;}
     25%  {background-color: #CAFF77;}
     50%  {background-color: #BBE8CA;}
-    75%  {background-color: #FFA5AD;}
-    100% {background-color: #C3D3FF;
+    75%  {background-color: #83FFD3;}
+    100% {background-color: #A9FFAF;
     transform: rotate(360deg);}
   }
 

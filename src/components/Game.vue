@@ -97,6 +97,11 @@ export default {
 
   h1 {
     font-family: 'Lily Script One', cursive;
+    text-shadow: 3px 2px rgb(255, 169, 201);
+  }
+
+  button {
+    background-color: rgb(255, 255, 255);
   }
 
   @media only screen and (min-width: 650px) {
@@ -116,7 +121,7 @@ export default {
     }
   }
 
-    /* iPhone 6/7/8 & Plus */
+  /* iPhone 6/7/8 & Plus */
   @media only screen and (min-width: 375px) and (max-width: 414px) {
     h1 {
       font-size: 40px;
