@@ -1,4 +1,3 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 /* eslint-env node */
 module.exports = {
   baseUrl: '/',
@@ -6,16 +5,8 @@ module.exports = {
   pages: {
     index: {
       entry: 'src/main.js',
-      template: './public/index.html',
+      template: 'public/index.html',
       filename: 'index.html',
     },
-  },
-  configureWebpack: {
-    performance: {
-      maxAssetSize: 500000,
-    },
-    plugins: [
-      new CopyWebpackPlugin([{ from: './public/', to: 'docs' }])
-    ],
   }
 };
