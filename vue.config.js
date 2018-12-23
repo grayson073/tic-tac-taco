@@ -15,7 +15,7 @@ module.exports = {
       maxAssetSize: 500000,
     },
     plugins: [
-      new CopyWebpackPlugin([{ from: './public/', to: 'public' }])
+      new CopyWebpackPlugin([{ from: './public/', to: 'docs' }])
     ],
   }
 };
