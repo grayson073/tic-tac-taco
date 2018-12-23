@@ -30,6 +30,9 @@ export default {
       if(this.currentPlayer === 2) this.value = -1;
       this.onPlay(this.position);
     }
+  },
+  beforeUpdate() {
+    if(this.currentPlayer === null) console.log('NULL');
   }
 };
 </script>
@@ -41,13 +44,15 @@ export default {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     font-size: 40px;
   }
 
   .pre-click {
-    border-radius: 50px;
+    width: 50%;
+    height: 50%;
+    border-radius: 100px;
     background-color: #FFA9C9;
   }
 
@@ -60,8 +65,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 85px;
-    height: 85px;
+    width: 100%;
+    height: 100%;
     -webkit-animation-name: icon; /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
     -webkit-animation-fill-mode: forwards;
@@ -79,11 +84,13 @@ export default {
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
     animation-duration: 3s;
+    height: 80%;
+    width: 80%;
   }
 
   img {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
   }
 
   @-webkit-keyframes icon {
@@ -105,51 +112,6 @@ export default {
     to { opacity: 1; }
   }
 
-  @media only screen and (min-width: 650px) {
-    .icon {
-      width: 135px;
-      height: 135px;
-    }
-  }
 
-  @media only screen and (min-width: 415px) and (max-width: 649px) {
-    .icon {
-      width: 100px;
-      height: 100px;
-    }
-  }
-
-  @media only screen and (min-width: 375px) and (max-width: 414px) {
-    .icon {
-      width: 85px;
-      height: 85px;
-    }
-  }
-
-    /* iPhone 6/7/8 & Plus */
-  @media only screen and (min-width: 301px) and (max-width: 374px) {
-    .icon {
-      width: 70px;
-      height: 70px;
-    }
-
-    .play-tile {
-      width: 40px;
-      height: 40px;
-    }
-  }
-
-    /* Micro! */
-  @media only screen and (max-width: 300px) {
-    .icon {
-      width: 40px;
-      height: 40px;
-    }
-
-    .play-tile {
-      width: 20px;
-      height: 20px;
-    }
-  }
 
 </style>
