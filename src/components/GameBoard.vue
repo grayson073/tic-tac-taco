@@ -5,7 +5,8 @@
           :key="index"
           :position="tiles[index]"
           :onPlay="handlePlay"
-          :currentPlayer="currentPlayer"/>
+          :currentPlayer="currentPlayer"
+          :reset="reset"/>
         </div>
     </div>
 </template>
@@ -16,7 +17,8 @@ export default {
   props: {
     tiles: Array,
     onPlay: Function,
-    currentPlayer: Number
+    currentPlayer: Number,
+    reset: Boolean
   },
   components: {
     PlayTile,

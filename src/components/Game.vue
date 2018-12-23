@@ -1,16 +1,17 @@
 <template>
   <div class="game">
-    <h1>Tic-Tac-Taco</h1>
+    <h1 @click="game.active = false">Tic-Tac-Taco</h1>
     <p v-if="!game.active" @click="startGame" class="game-mode">PLAYER VS PLAYER</p>
     <section>
       <GameBoard
       v-if="game.active" 
       :tiles="tiles"
       :onPlay="handlePlay"
-      :currentPlayer="currentPlayer"/>
+      :currentPlayer="currentPlayer"
+      :reset="reset"/>
     </section>
     <section class="message">
-      <p>{{game.winner ? gameOverMessage : currentTurnMessage }}</p>
+      <p v-if="game.active">{{!game.winner && game.active ? currentTurnMessage : gameOverMessage }}</p>
       <p v-if="game.winner" @click="startGame" class="game-mode">NEW GAME</p>
       <img v-if="!game.active" src="@/assets/taco.png">
     </section>
@@ -28,7 +29,7 @@ function initGame() {
       middleLeft: null, middleMid: null, middleRight: null,
       bottomLeft: null, bottomMid: null, bottomRight: null,
     },
-    winner: null,
+    winner: null
   };
 }
 
@@ -40,11 +41,12 @@ export default {
   data() {
     return {
       game: initGame(),
-      tiles: initTiles(),
       currentPlayer: null,
       gameOverMessage: null,
       player1: 'Carne Asada',
-      player2: 'Chorizo'
+      player2: 'Chorizo',
+      reset: false,
+      playCount: 0
     };
   },
   components: {
@@ -52,6 +54,8 @@ export default {
   },
   methods: {
     handlePlay(selected) {
+      this.reset = false;
+      this.playCount++;
       let p = this.game.plays;
       this.currentPlayer === 1 ? p[selected] = 1 : p[selected] = -1;
       this.currentPlayer === 1 ? this.currentPlayer = 2 : this.currentPlayer = 1;
@@ -61,6 +65,7 @@ export default {
       return Math.floor(Math.random() * Math.floor(2) + 1);
     },
     startGame() {
+      this.reset = true;
       this.game = initGame();
       this.tiles = initTiles();
       this.game.active = true;
@@ -94,6 +99,11 @@ export default {
       if(this.game.winner !== null) {
         this.gameOverMessage = this.game.winner + ' wins!';
       }
+
+      if(this.playCount === 9 && this.game.winner === null) {
+        this.game.winner = 'draw';
+        this.gameOverMessage = 'Stalemate!';
+      }
     }
   },
   computed: {
@@ -121,6 +131,7 @@ export default {
     cursor: pointer;
     display: inline-block;
     padding: 5px 25px 5px 25px;
+    margin: 2vh 0px 6vh 0px;
     border: 3px solid black;
     box-sizing: border-box;
     text-decoration: none;
@@ -132,6 +143,8 @@ export default {
     text-align: center;
     transition: all 0.15s;
     background-color: rgba(255, 255, 255, 0.694);
+    max-height: 500px;
+    max-width: 500px;
   }
   .game-mode:hover{
     color:rgb(145, 145, 145);
@@ -150,6 +163,7 @@ export default {
     text-shadow: 3px 2px rgb(255, 136, 180);
     width: 80vw;
     text-align: center;
+    cursor: pointer;
   }
 
   .message {
@@ -162,7 +176,7 @@ export default {
     font-size: 5vw;
   }
 
-  .message img {
+  .message, img {
     max-height: 55vw;
     max-width: 55vw;
   }

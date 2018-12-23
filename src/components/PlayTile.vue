@@ -23,6 +23,7 @@ export default {
     onPlay: Function,
     position: String,
     currentPlayer: Number,
+    reset: Boolean
   },
   methods: {
     handlePlay() {
@@ -31,8 +32,10 @@ export default {
       this.onPlay(this.position);
     }
   },
-  beforeUpdate() {
-    if(this.currentPlayer === null) console.log('NULL');
+  watch: {
+    reset: function(newReset, oldReset) {
+      if(newReset === true && oldReset === false) this.value = null;
+    }
   }
 };
 </script>
