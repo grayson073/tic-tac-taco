@@ -12,7 +12,7 @@
     </section>
     <section class="message">
       <p v-if="game.active">{{!game.winner && game.active ? currentTurnMessage : gameOverMessage }}</p>
-      <p v-if="game.winner" @click="startGame" class="game-mode">NEW GAME</p>
+      <p v-if="game.winner && game.active" @click="startGame" class="game-mode">NEW GAME</p>
       <img v-if="!game.active" src="@/assets/taco.png">
     </section>
   </div>
@@ -65,6 +65,7 @@ export default {
       return Math.floor(Math.random() * Math.floor(2) + 1);
     },
     startGame() {
+      this.playCount = 0;
       this.reset = true;
       this.game = initGame();
       this.tiles = initTiles();
