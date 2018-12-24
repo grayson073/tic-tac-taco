@@ -33,31 +33,28 @@ export default {
 
 <style>
   .game-board {
-    border-radius: 12px;
     background-color: rgb(255, 134, 179);
+    border-radius: 12px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
   }
 
   .game-grid {
-    display: grid;
     align-items: center;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    width: 80vw;
     height: 80vw;
+    width: 80vw;
     }
 
   .game-tile {
-    list-style: none;
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
+    list-style: none;
     height: 100%;
+    width: 100%;
   }
-
-
-
 </style>
