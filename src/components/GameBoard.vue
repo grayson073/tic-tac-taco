@@ -47,7 +47,7 @@ export default {
     grid-template-rows: repeat(3, 1fr);
     height: 80vw;
     width: 80vw;
-    }
+  }
 
   .game-tile {
     align-items: center;
@@ -56,5 +56,22 @@ export default {
     list-style: none;
     height: 100%;
     width: 100%;
+  }
+
+  @media screen and (min-width: 750px) {
+    .game-board {
+      height: 400px;
+      width: 400px;
+    }
+
+    .game-grid {
+      height: 400px;
+      width: 400px;
+    }
+
+    .game-tile {
+      height: 100%;
+      width: 100%;
+    }
   }
 </style>

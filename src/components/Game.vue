@@ -165,6 +165,7 @@ export default {
     text-align: center;
     text-shadow: 3px 2px rgb(255, 136, 180);
     width: 80vw;
+    margin: 3vh;
   }
 
   .message {
@@ -180,6 +181,31 @@ export default {
   .message, img {
     max-height: 55vw;
     max-width: 55vw;
+  }
+
+
+  @media screen and (min-width: 750px) {
+
+    /* Start Button CSS - Button by Federico Dossena https://fdossena.com/?p=html5cool/buttons/i.frag */
+    .game-mode {
+      font-size: 20px;
+    }
+    /* End Button CSS */
+
+    h1 {
+      font-size: 80px;
+      width: 80vw;
+    }
+
+    .message {
+      font-size: 30px;
+      font-weight: 800;
+    }
+
+    img {
+      max-height: 250px;
+      max-width: auto;
+    }
   }
 
 </style>

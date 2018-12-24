@@ -46,7 +46,6 @@ export default {
     align-items: center;
     display: flex;
     flex-flow: row nowrap;
-    font-size: 40px;
     height: 100%;
     justify-content: center;
     width: 100%;
@@ -126,8 +125,5 @@ export default {
     100% {background-color: #A9FFAF;
     transform: rotate(360deg);}
   }
-
-
-
 
 </style>
