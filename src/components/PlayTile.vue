@@ -67,31 +67,31 @@ export default {
     align-items: center;
     animation-fill-mode: forwards;
     animation-name: icon;
-    animation-duration: 3s;
+    animation-duration: .7s;
     animation-iteration-count: 1;
     border-radius: 5px;
     display: flex;
     height: 100%;
     justify-content: center;
-    transition: opacity 3s ease-in-out;
+    transition: opacity 1s ease-in-out;
     opacity: 1;
     width: 100%;
     -webkit-animation-name: icon; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: .7s; /* Safari 4.0 - 8.0 */
     -webkit-animation-fill-mode: forwards;
-    -webkit-transition: opacity 3s ease-in-out;
-    -moz-transition: opacity 3s ease-in-out;
-    -ms-transition: opacity 3s ease-in-out;
-    -o-transition: opacity 3s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
   }
 
   .fadeIn {
     animation-name: fadeIn;
-    animation-duration: 3s;
+    animation-duration: 2s;
     height: 80%;
     width: 80%;
     -webkit-animation-name: fadeIn;
-    -webkit-animation-duration: 3s;
+    -webkit-animation-duration: 1s;
   }
 
   img {
@@ -117,7 +117,7 @@ export default {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  
+
   @-webkit-keyframes icon {
     0%   {background-color: #FFF7B2;}
     25%  {background-color: #CAFF77;}
