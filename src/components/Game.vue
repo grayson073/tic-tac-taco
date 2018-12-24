@@ -161,7 +161,7 @@ export default {
   h1 {
     cursor: pointer;
     font-family: 'Lily Script One', cursive;
-    font-size: 15vw;
+    font-size: 13vw;
     text-align: center;
     text-shadow: 3px 2px rgb(255, 136, 180);
     width: 80vw;

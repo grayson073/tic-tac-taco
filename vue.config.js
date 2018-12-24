@@ -1,6 +1,7 @@
 /* eslint-env node */
 module.exports = {
   baseUrl: '/',
+  outputDir: 'dist',
   pages: {
     index: {
       entry: 'src/main.js',
