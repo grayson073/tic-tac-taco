@@ -65,6 +65,7 @@ export default {
       return Math.floor(Math.random() * Math.floor(2) + 1);
     },
     startGame() {
+      this.playCount = 0;
       this.reset = true;
       this.game = initGame();
       this.tiles = initTiles();
@@ -121,59 +122,59 @@ export default {
   @import url('https://fonts.googleapis.com/css?family=Lily+Script+One');
 
   .game {
+    align-items: center;
     display: flex;
     flex-flow: column nowrap;
-    align-items: center;
   }
 
   /* Start Button CSS - Button by Federico Dossena https://fdossena.com/?p=html5cool/buttons/i.frag */
   .game-mode {
-    cursor: pointer;
-    display: inline-block;
-    padding: 5px 25px 5px 25px;
-    margin: 2vh 0px 6vh 0px;
+    background-color: rgba(255, 255, 255, 0.694);
     border: 3px solid black;
     box-sizing: border-box;
-    text-decoration: none;
-    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    display: inline-block;
     font-family: 'Roboto',sans-serif;
     font-size: 5vw;
     font-weight: 800;
-    color: rgb(0, 0, 0);
+    margin: 2vh 0px 6vh 0px;
+    padding: 5px 25px 5px 25px;
     text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
     transition: all 0.15s;
-    background-color: rgba(255, 255, 255, 0.694);
     max-height: 500px;
     max-width: 500px;
   }
   .game-mode:hover{
-    color:rgb(145, 145, 145);
     border-color:rgb(145, 145, 145);
+    color:rgb(145, 145, 145);
   }
   .game-mode:active{
-    color:rgb(255, 134, 179);
     border-color:rgb(255, 134, 179);
+    color:rgb(255, 134, 179);
   }
   /* End Button CSS */
 
 
   h1 {
+    cursor: pointer;
     font-family: 'Lily Script One', cursive;
     font-size: 13vw;
+    text-align: center;
     text-shadow: 3px 2px rgb(255, 136, 180);
     width: 80vw;
-    text-align: center;
-    cursor: pointer;
   }
 
   .message {
+    align-items: center;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
     font-family:'Roboto',sans-serif;
-    font-weight: 800;
     font-size: 5vw;
+    font-weight: 800;
   }
 
   .message, img {
